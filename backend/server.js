@@ -13,6 +13,10 @@ app.use(cors())
 app.use(morgan('tiny'))
 app.use(helmet())
 
+// Database Connection
+import {dbConnection} from './src/config/db.js'
+dbConnection()
+
 app.get('/',(req,res)=>{
     res.json({
         message:"You have reached backend api"
