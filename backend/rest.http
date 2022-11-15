@@ -1,0 +1,14 @@
+POST http://localhost:8000/book
+Content-Type: application/json
+
+{
+    "name":"Sulav",
+    "author":"asdfas",
+    "description":"asdfdassadfds",
+    "price":123123,
+    "availability":false
+}
+
+###
+GET http://localhost:8000/book/6372f5fb6d5711692790ec7c
+
