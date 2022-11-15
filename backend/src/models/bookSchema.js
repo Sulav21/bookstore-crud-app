@@ -21,6 +21,10 @@ const BookSchema = new mongoose.Schema({
         type:Boolean,
         required:true
     },
+    image:{
+        type:String,
+        required:true
+    }
 })
 
 export default mongoose.model('book',BookSchema)
