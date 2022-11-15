@@ -10,5 +10,14 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:8000/book/6372f5fb6d5711692790ec7c
+GET http://localhost:8000/book
 
+
+###
+PATCH http://localhost:8000/book/6372f5fb6d5711692790ec7c
+Content-Type: application/json
+
+{
+    "name":"Krishna",
+    "price":20
+}
