@@ -1,5 +1,5 @@
 import express from "express";
-import { getAllBook, getBookById, insertBook } from "../models/bookModel.js";
+import { deleteBook, getAllBook, getBookById, insertBook, updateBook } from "../models/bookModel.js";
 
 const router = express.Router();
 
@@ -26,15 +26,62 @@ router.get("/:_id?", async (req, res, next) => {
   try {
     const { _id } = req.params;
     const result = _id ? await getBookById(_id) : await getAllBook();
-
-   res.json({
-          status: "success",
-          result,
-        })
-     
+    if (result) {
+      res.json({
+        status: "success",
+        result,
+      });
+    } else {
+      res.json({
+        status: "error",
+        message: "Book not found",
+      });
+    }
   } catch (error) {
     next(error);
   }
 });
+
+router.patch('/:_id', async(req,res,next)=>{
+    try {
+        const {_id} = req.params
+        const result = await updateBook(_id,req.body)
+        if (result) {
+            res.json({
+              status: "success",
+              message:"Updated succesfully",
+              result,
+            });
+          } else {
+            res.json({
+              status: "error",
+              message: "Couldn't update the book details",
+            });
+          }
+    } catch (error) {
+        next(error)
+    }
+})
+
+router.delete('/:_id',async(req,res,next)=>{
+    try {
+        const {_id} = req.params
+        const result = await deleteBook(_id)
+        if (result) {
+            res.json({
+              status: "success",
+              message:"Book deleted succesfully"
+            });
+          } else {
+            res.json({
+              status: "error",
+              message: "Couldn't delete book, try again later",
+            });
+          }
+    } catch (error) {
+        next(error)
+    }
+})
+
 
 export default router;

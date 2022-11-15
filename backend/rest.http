@@ -21,3 +21,6 @@ Content-Type: application/json
     "name":"Krishna",
     "price":20
 }
+
+###
+DELETE http://localhost:8000/book/6372f5fb6d5711692790ec7c
