@@ -17,6 +17,21 @@ app.use(helmet())
 import {dbConnection} from './src/config/db.js'
 dbConnection()
 
+// routers
+import bookRouter from './src/routers/BookRouter.js'
+app.use('/book',bookRouter)
+
+// Global Error handling
+app.use((err,req,res,next)=>{
+    console.log(err)
+        res.status(err.status || 404)
+        res.json({
+            status:'error',
+            message:err.message
+        })
+    })
+
+
 app.get('/',(req,res)=>{
     res.json({
         message:"You have reached backend api"
